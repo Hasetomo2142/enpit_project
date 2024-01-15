@@ -1,0 +1,14 @@
+Flask
+sqlalchemy
+mysql-connector-python
+Flask-SQLAlchemy
+Flask-Migrate
+Flask-Cors
+mysqlclient  # MySQL用のPythonドライバ
+Faker
+networkx
+boto3
+PyMySQL
+asyncmy
+cryptography
+line-bot-sdk

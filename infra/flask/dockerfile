@@ -1,0 +1,26 @@
+# ベースイメージ
+FROM python:3.9
+
+# 作業ディレクトリの設定
+WORKDIR /workspace
+
+# 依存関係ファイルのコピー
+# ビルドコンテキストがプロジェクトのルートディレクトリであることを前提としています
+COPY ./infra/flask/requirements.txt /workspace/
+
+# 依存関係のインストール
+RUN pip install --no-cache-dir -r requirements.txt
+
+# MySQLクライアントの代替パッケージのインストール
+RUN apt-get update && apt-get install -y default-mysql-client
+
+# タイムゾーンの設定
+RUN apt-get install -y tzdata
+RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+
+# ポートの公開
+EXPOSE 5000
+
+# アプリケーションの実行
+CMD ["flask", "run", "--host=0.0.0.0"]
